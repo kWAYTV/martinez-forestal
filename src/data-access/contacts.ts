@@ -1,6 +1,6 @@
 'use server';
 
-import { type Contact, type Status } from '@prisma/client';
+import { /* type Contact,  */ type Status } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 
 import { prisma } from '@/lib/prisma';

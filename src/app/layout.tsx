@@ -1,10 +1,10 @@
 import './globals.css';
 
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ViewTransitions } from 'next-view-transitions';
 
 import { Providers } from '@/components/core/providers/providers';
 import { createMetadata } from '@/lib/metadata';
-import { ViewTransitions } from 'next-view-transitions';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
