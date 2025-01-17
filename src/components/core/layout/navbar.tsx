@@ -2,7 +2,7 @@
 
 import { Info, Phone, TreesIcon as Tree, Wrench } from 'lucide-react';
 import { motion, useScroll } from 'motion/react';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import * as React from 'react';
 
 import AuthButtons from '@/components/core/app/auth/auth-buttons';
@@ -11,9 +11,9 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/#about', label: 'Nosotros', icon: Info },
-  { href: '/#services', label: 'Servicios', icon: Wrench },
-  { href: '/#contact', label: 'Contacto', icon: Phone }
+  { href: '/about', label: 'Nosotros', icon: Info },
+  { href: '/services', label: 'Servicios', icon: Wrench },
+  { href: '/contact', label: 'Contacto', icon: Phone }
 ];
 
 export function Navbar() {

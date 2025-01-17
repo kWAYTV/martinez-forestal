@@ -3,7 +3,7 @@
 import { z } from 'zod';
 
 import { prisma } from '@/lib/prisma';
-import { contactFormSchema, ContactFormValues } from '@/schemas/contact';
+import { contactFormSchema, type ContactFormValues } from '@/schemas/contact';
 
 export type ContactActionState = {
   error?: string | null;

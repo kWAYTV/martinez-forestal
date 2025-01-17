@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 
 import { ContactsTable } from '@/components/core/app/admin/contacts/contacts-table';
 import { getContacts } from '@/data-access/contacts';

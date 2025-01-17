@@ -2,7 +2,7 @@
 
 import { type ErrorContext } from '@better-fetch/fetch';
 import { GithubIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useTransitionRouter } from 'next-view-transitions';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -17,7 +17,7 @@ import {
 import LoadingButton from '@/components/ui/loading-button';
 
 export default function AdminSignIn() {
-  const router = useRouter();
+  const router = useTransitionRouter();
   const [pendingGithub, setPendingGithub] = useState(false);
 
   const handleSignInWithGithub = async () => {

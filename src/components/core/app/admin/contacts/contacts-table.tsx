@@ -9,15 +9,23 @@ import {
   Mail,
   MessageSquare,
   Phone,
+  Trash2,
   User
 } from 'lucide-react';
 import { useTransition } from 'react';
 import { toast } from 'sonner';
 
 import {
-  updateContactPosition,
-  updateContactStatus
-} from '@/data-access/contacts';
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -34,6 +42,11 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
+import {
+  deleteContact,
+  updateContactPosition,
+  updateContactStatus
+} from '@/data-access/contacts';
 
 type ContactsTableProps = {
   contacts: Contact[];
@@ -48,12 +61,8 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
         await updateContactStatus(id, status);
         toast.success('Estado actualizado correctamente');
       } catch (error) {
-        toast.error(
-          error instanceof Error
-            ? error.message
-            : 'Error al actualizar el estado'
-        );
-        console.error('Error updating status:', error);
+        console.error('Error:', error);
+        toast.error('Error al actualizar el estado');
       }
     });
   };
@@ -64,12 +73,20 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
         await updateContactPosition(id, position);
         toast.success('Posición actualizada correctamente');
       } catch (error) {
-        toast.error(
-          error instanceof Error
-            ? error.message
-            : 'Error al actualizar la posición'
-        );
-        console.error('Error updating position:', error);
+        console.error('Error:', error);
+        toast.error('Error al actualizar la posición');
+      }
+    });
+  };
+
+  const handleDelete = async (id: string) => {
+    startTransition(async () => {
+      try {
+        await deleteContact(id);
+        toast.success('Contacto eliminado correctamente');
+      } catch (error) {
+        console.error('Error:', error);
+        toast.error('Error al eliminar el contacto');
       }
     });
   };
@@ -122,27 +139,33 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
             <TableHead>
               <div className='flex items-center gap-2'>
                 <Clock className='h-4 w-4' />
-                <span>Estado</span>
+                <span>Fecha</span>
               </div>
             </TableHead>
-            <TableHead className='text-right'>Fecha</TableHead>
+            <TableHead>Estado</TableHead>
+            <TableHead>Acciones</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {contacts.map(contact => (
             <TableRow key={contact.id}>
-              <TableCell>{contact.position + 1}</TableCell>
+              <TableCell>{contact.position}</TableCell>
               <TableCell>{contact.name}</TableCell>
               <TableCell>{contact.email}</TableCell>
               <TableCell>{contact.phone || '-'}</TableCell>
-              <TableCell className='max-w-md truncate'>
+              <TableCell className='max-w-[200px] truncate'>
                 {contact.message}
               </TableCell>
               <TableCell>
+                {format(contact.createdAt, 'dd/MM/yyyy HH:mm', {
+                  locale: es
+                })}
+              </TableCell>
+              <TableCell>
                 <Select
-                  value={contact.status}
-                  onValueChange={(value: Status) =>
-                    handleStatusChange(contact.id, value)
+                  defaultValue={contact.status}
+                  onValueChange={value =>
+                    handleStatusChange(contact.id, value as Status)
                   }
                   disabled={isPending}
                 >
@@ -156,10 +179,37 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
                   </SelectContent>
                 </Select>
               </TableCell>
-              <TableCell className='text-right'>
-                {format(contact.createdAt, "d 'de' MMMM, yyyy", {
-                  locale: es
-                })}
+              <TableCell>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant='ghost'
+                      size='icon'
+                      className='hover:text-destructive'
+                    >
+                      <Trash2 className='h-4 w-4' />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Eliminar Contacto</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        ¿Estás seguro de que deseas eliminar este contacto? Esta
+                        acción no se puede deshacer.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => handleDelete(contact.id)}
+                        disabled={isPending}
+                        className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
+                      >
+                        Eliminar
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </TableCell>
             </TableRow>
           ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 import { authClient } from '@/auth/client';
 import SignoutButton from '@/components/core/app/auth/logout-button';
