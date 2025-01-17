@@ -1,12 +1,12 @@
 'use client';
 
 import { motion } from 'motion/react';
-import Link from 'next/link';
 
 import { Separator } from '@/components/ui/separator';
-import { githubProfileUrl, githubRepoUrl } from '@/lib/metadata';
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <motion.footer
       className='w-full'
@@ -15,28 +15,10 @@ export function Footer() {
       transition={{ delay: 0.2 }}
     >
       <Separator />
-      <div className='mx-auto max-w-screen-xl px-4'>
+      <div className='mx-auto max-w-screen-2xl px-6'>
         <div className='flex h-16 items-center justify-center'>
           <p className='text-center text-sm text-muted-foreground'>
-            Built by{' '}
-            <Link
-              href={githubProfileUrl}
-              target='_blank'
-              rel='noreferrer'
-              className='font-medium underline underline-offset-4'
-            >
-              kWAY
-            </Link>
-            . The source code is available on{' '}
-            <Link
-              href={githubRepoUrl}
-              target='_blank'
-              rel='noreferrer'
-              className='font-medium underline underline-offset-4'
-            >
-              GitHub
-            </Link>
-            .
+            © {currentYear} Martinez Forestal. Todos los derechos reservados.
           </p>
         </div>
       </div>
