@@ -6,9 +6,10 @@ export function createMetadata(override: Metadata): Metadata {
     openGraph: {
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      url: 'https://perc.dev',
-      images: 'https://perc.dev/og.png',
-      siteName: 'perc.dev',
+      url: 'https://martinez-forestal.vercel.app',
+      images:
+        'https://z5l0a09ijg.ufs.sh/f/s1hOVWQzX3uOValUeQ7F4ELHVJb2ZhqMsorzyet19cTACdfO',
+      siteName: 'martinez-forestal.vercel.app',
       ...override.openGraph
     },
     twitter: {
@@ -16,7 +17,8 @@ export function createMetadata(override: Metadata): Metadata {
       creator: '@ogeperc',
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      images: 'https://perc.dev/og.png',
+      images:
+        'https://z5l0a09ijg.ufs.sh/f/s1hOVWQzX3uOValUeQ7F4ELHVJb2ZhqMsorzyet19cTACdfO',
       ...override.twitter
     }
   };
