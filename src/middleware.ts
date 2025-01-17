@@ -1,9 +1,20 @@
+import { betterFetch } from '@better-fetch/fetch';
 import { type NextRequest, NextResponse } from 'next/server';
+
+import { type Session } from '@/auth/server';
 
 const protectedRoutes = ['/contacts'];
 
-export function middleware(request: NextRequest) {
-  const sessionToken = request.cookies.get('next-auth.session-token')?.value;
+export async function middleware(request: NextRequest) {
+  const { data: session } = await betterFetch<Session>(
+    '/api/auth/get-session',
+    {
+      baseURL: process.env.BETTER_AUTH_URL,
+      headers: {
+        cookie: request.headers.get('cookie') || ''
+      }
+    }
+  );
 
   // Check if the current route is protected
   const isProtectedRoute = protectedRoutes.some(route =>
@@ -16,7 +27,7 @@ export function middleware(request: NextRequest) {
   }
 
   // If it's a protected route and there's no session, redirect to sign-in
-  if (!sessionToken) {
+  if (!session) {
     return NextResponse.redirect(new URL('/sign-in', request.url));
   }
 
