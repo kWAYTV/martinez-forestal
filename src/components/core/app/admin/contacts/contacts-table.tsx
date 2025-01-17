@@ -9,24 +9,11 @@ import {
   Mail,
   MessageSquare,
   Phone,
-  Trash2,
   User
 } from 'lucide-react';
 import { useTransition } from 'react';
 import { toast } from 'sonner';
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -42,8 +29,8 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
+import { Button } from '@/components/ui/button';
 import {
-  deleteContact,
   updateContactPosition,
   updateContactStatus
 } from '@/data-access/contacts';
@@ -75,18 +62,6 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
       } catch (error) {
         console.error('Error:', error);
         toast.error('Error al actualizar la posición');
-      }
-    });
-  };
-
-  const handleDelete = async (id: string) => {
-    startTransition(async () => {
-      try {
-        await deleteContact(id);
-        toast.success('Contacto eliminado correctamente');
-      } catch (error) {
-        console.error('Error:', error);
-        toast.error('Error al eliminar el contacto');
       }
     });
   };
@@ -143,7 +118,6 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
               </div>
             </TableHead>
             <TableHead>Estado</TableHead>
-            <TableHead>Acciones</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -178,38 +152,6 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
                     <SelectItem value='COMPLETED'>Completado</SelectItem>
                   </SelectContent>
                 </Select>
-              </TableCell>
-              <TableCell>
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button
-                      variant='ghost'
-                      size='icon'
-                      className='hover:text-destructive'
-                    >
-                      <Trash2 className='h-4 w-4' />
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Eliminar Contacto</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        ¿Estás seguro de que deseas eliminar este contacto? Esta
-                        acción no se puede deshacer.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => handleDelete(contact.id)}
-                        disabled={isPending}
-                        className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
-                      >
-                        Eliminar
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
               </TableCell>
             </TableRow>
           ))}

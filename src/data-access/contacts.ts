@@ -45,11 +45,3 @@ export async function updateContactPosition(id: string, position: number) {
     throw new Error('Error al actualizar la posición del contacto');
   }
 }
-
-export async function deleteContact(id: string) {
-  await prisma.contact.delete({
-    where: { id }
-  });
-
-  revalidatePath('/contacts');
-}
