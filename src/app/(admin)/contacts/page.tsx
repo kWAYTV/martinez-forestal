@@ -1,11 +1,11 @@
 'use client';
 
+import { type Contact } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { authClient } from '@/auth/client';
 import { ContactsTable } from '@/components/core/app/admin/contacts/contacts-table';
-import { type Contact } from '@prisma/client';
 import { getContacts } from '@/data-access/contacts';
 
 export default function ContactsPage() {
