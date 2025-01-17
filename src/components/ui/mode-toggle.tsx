@@ -50,7 +50,7 @@ export function ModeToggle() {
               <Moon className='h-4 w-4' aria-hidden='true' />
             )}
             <span className='capitalize'>
-              {currentTheme === 'dark' ? 'Light' : 'Dark'}
+              {currentTheme === 'dark' ? 'Claro' : 'Oscuro'}
             </span>
           </motion.div>
         </AnimatePresence>

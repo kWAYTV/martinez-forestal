@@ -36,7 +36,7 @@ export default function AdminSignIn() {
         onError: (ctx: ErrorContext) => {
           toast.error(
             ctx.error.message ??
-              'Unable to sign in. Please ensure you have admin access.'
+              'No se ha podido iniciar sesión. Asegúrate de tener acceso de administrador.'
           );
         }
       }
@@ -49,10 +49,10 @@ export default function AdminSignIn() {
       <Card className='w-full max-w-md'>
         <CardHeader>
           <CardTitle className='text-center text-3xl font-bold'>
-            Admin Sign In
+            Iniciar sesión
           </CardTitle>
           <CardDescription className='text-center text-muted-foreground'>
-            This sign-in is restricted to administrators only.
+            Esta sesión está restringida a administradores.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,12 +63,12 @@ export default function AdminSignIn() {
               className='w-full'
             >
               <GithubIcon className='mr-2 h-4 w-4' />
-              Sign in with GitHub
+              Iniciar sesión con GitHub
             </LoadingButton>
           </div>
           <p className='mt-4 text-center text-sm text-gray-500'>
-            Only authorized administrators can access this area. If you&apos;re
-            not an admin, refrain from signing in.
+            Solo administradores autorizados pueden acceder a esta área. Si no
+            es administrador, no inicies sesión.
           </p>
         </CardContent>
       </Card>

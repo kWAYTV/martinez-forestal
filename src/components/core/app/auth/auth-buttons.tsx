@@ -13,7 +13,7 @@ export default function AuthButtons() {
     <div className='flex items-center gap-2'>
       <Link href='/sign-in'>
         <Button variant='outline' size='sm'>
-          Sign In
+          Iniciar sesión
         </Button>
       </Link>
     </div>
