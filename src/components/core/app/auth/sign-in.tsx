@@ -33,7 +33,7 @@ export default function AdminSignIn() {
           toast.loading('Iniciando sesión...');
         },
         onSuccess: async () => {
-          router.push('/');
+          router.push('/contacts');
           router.refresh();
           toast.success('Sesión iniciada correctamente');
         },
