@@ -1,42 +1,23 @@
-import { betterFetch } from '@better-fetch/fetch';
 import { type NextRequest, NextResponse } from 'next/server';
 
-import type { Session } from '@/auth/server';
+const protectedRoutes = ['/contacts'];
 
-const authRoutes = ['/sign-in'];
-const adminRoutes = ['/contacts'];
+export function middleware(request: NextRequest) {
+  const sessionToken = request.cookies.get('next-auth.session-token')?.value;
 
-export default async function authMiddleware(request: NextRequest) {
-  const pathName = request.nextUrl.pathname;
-  const isAuthRoute = authRoutes.includes(pathName);
-  const isAdminRoute = adminRoutes.some(route => pathName.startsWith(route));
-
-  const { data: session } = await betterFetch<Session>(
-    '/api/auth/get-session',
-    {
-      baseURL: process.env.BETTER_AUTH_URL,
-      headers: {
-        cookie: request.headers.get('cookie') || ''
-      }
-    }
+  // Check if the current route is protected
+  const isProtectedRoute = protectedRoutes.some(route =>
+    request.nextUrl.pathname.startsWith(route)
   );
 
-  // Not authenticated
-  if (!session) {
-    if (isAuthRoute) {
-      return NextResponse.next();
-    }
+  // If it's not a protected route, allow access
+  if (!isProtectedRoute) {
+    return NextResponse.next();
+  }
+
+  // If it's a protected route and there's no session, redirect to sign-in
+  if (!sessionToken) {
     return NextResponse.redirect(new URL('/sign-in', request.url));
-  }
-
-  // Authenticated but trying to access auth routes
-  if (isAuthRoute) {
-    return NextResponse.redirect(new URL('/', request.url));
-  }
-
-  // Not admin trying to access admin routes
-  if (isAdminRoute && session.user.role !== 'admin') {
-    return NextResponse.redirect(new URL('/', request.url));
   }
 
   return NextResponse.next();
