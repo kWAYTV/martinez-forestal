@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
@@ -21,38 +22,59 @@ export default function Hero() {
       </div>
 
       <div className='relative mx-auto flex h-full max-w-screen-xl items-center px-6'>
-        <div className='mx-auto max-w-[800px] space-y-6 text-center'>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className='text-balance text-4xl font-medium text-white sm:text-5xl md:text-6xl'
-          >
-            Martinez Forestal
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className='mx-auto max-w-2xl text-pretty text-base text-gray-200 sm:text-lg'
-          >
-            Expertos en servicios forestales en Cuntis, Pontevedra. Miembros de
-            FEARMAGA con más de 20 años de experiencia.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className='mx-auto max-w-3xl space-y-8 text-center'
+        >
+          <div className='space-y-4'>
+            <h1 className='text-4xl font-bold text-white sm:text-5xl md:text-6xl'>
+              Martinez Forestal
+            </h1>
+            <p className='text-xl text-gray-200'>
+              Expertos en servicios forestales y gestión sostenible del medio
+              ambiente
+            </p>
+          </div>
+
+          <div className='flex flex-col items-center gap-4 sm:flex-row sm:justify-center'>
             <Button
               asChild
               size='lg'
-              className='bg-emerald-600 text-base hover:bg-emerald-700'
+              className='min-w-[200px] bg-emerald-600 hover:bg-emerald-700'
             >
-              <a href='#contact'>Contactar</a>
+              <Link href='/#services'>Explorar Servicios</Link>
             </Button>
+            <Button
+              asChild
+              variant='outline'
+              size='lg'
+              className='min-w-[200px] border-white text-white hover:bg-white/10'
+            >
+              <Link href='/#contact'>Contactar</Link>
+            </Button>
+          </div>
+
+          <motion.div
+            animate={{
+              y: [0, -10, 0]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut'
+            }}
+            className='pt-8'
+          >
+            <Link
+              href='/#about'
+              className='inline-flex items-center gap-2 text-gray-200 hover:text-white'
+            >
+              <span>Descubre más</span>
+            </Link>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

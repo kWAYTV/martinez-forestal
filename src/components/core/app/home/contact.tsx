@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Mail, MessageSquare, Phone, Send, User } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -79,7 +80,10 @@ export default function Contact() {
                   name='name'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Nombre</FormLabel>
+                      <FormLabel className='flex items-center gap-2'>
+                        <User className='h-4 w-4' />
+                        <span>Nombre</span>
+                      </FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
@@ -92,7 +96,10 @@ export default function Contact() {
                   name='email'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className='flex items-center gap-2'>
+                        <Mail className='h-4 w-4' />
+                        <span>Email</span>
+                      </FormLabel>
                       <FormControl>
                         <Input type='email' {...field} />
                       </FormControl>
@@ -105,7 +112,10 @@ export default function Contact() {
                   name='phone'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Teléfono</FormLabel>
+                      <FormLabel className='flex items-center gap-2'>
+                        <Phone className='h-4 w-4' />
+                        <span>Teléfono</span>
+                      </FormLabel>
                       <FormControl>
                         <Input type='tel' {...field} />
                       </FormControl>
@@ -118,7 +128,10 @@ export default function Contact() {
                   name='message'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Mensaje</FormLabel>
+                      <FormLabel className='flex items-center gap-2'>
+                        <MessageSquare className='h-4 w-4' />
+                        <span>Mensaje</span>
+                      </FormLabel>
                       <FormControl>
                         <Textarea rows={4} {...field} />
                       </FormControl>
@@ -127,6 +140,7 @@ export default function Contact() {
                   )}
                 />
                 <Button type='submit' className='w-full'>
+                  <Send className='mr-2 h-4 w-4' />
                   Enviar Mensaje
                 </Button>
               </form>

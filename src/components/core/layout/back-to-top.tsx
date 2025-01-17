@@ -5,6 +5,7 @@ import { motion, useScroll } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export function BackToTop() {
   const { scrollY } = useScroll();
@@ -30,9 +31,15 @@ export function BackToTop() {
       <Button
         size='icon'
         onClick={scrollToTop}
-        className='group h-10 w-10 rounded-full bg-background shadow-lg transition-all duration-300 hover:scale-110 hover:bg-foreground hover:shadow-xl dark:border dark:border-border'
+        className={cn(
+          'h-10 w-10 rounded-full',
+          'bg-primary hover:bg-primary/90',
+          'text-primary-foreground hover:text-primary-foreground',
+          'shadow-lg hover:shadow-xl',
+          'transition-all duration-300 hover:scale-110'
+        )}
       >
-        <ArrowUpIcon className='h-5 w-5 transition-all duration-300 group-hover:text-background dark:group-hover:text-background' />
+        <ArrowUpIcon className='h-5 w-5' />
       </Button>
     </motion.div>
   );

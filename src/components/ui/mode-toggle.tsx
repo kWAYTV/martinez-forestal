@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Loader2, Moon, Sun } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { AnimatePresence, motion } from 'motion/react';
 
@@ -18,43 +18,35 @@ export function ModeToggle() {
 
   if (!mounted) {
     return (
-      <div className='flex items-center gap-2'>
-        <Button variant='linkHover2' className='p-2'>
-          <Loader2 className='h-4 w-4 animate-spin' aria-hidden='true' />
-          <span className='capitalize'>Loading</span>
-        </Button>
-      </div>
+      <Button variant='ghost' size='icon' className='h-9 w-9'>
+        <span className='sr-only'>Toggle theme</span>
+      </Button>
     );
   }
 
   return (
-    <div className='flex items-center gap-2'>
-      <Button
-        onClick={() => setTheme(currentTheme === 'light' ? 'dark' : 'light')}
-        variant='linkHover2'
-        className='p-2'
-        aria-label='Toggle theme'
-      >
-        <AnimatePresence mode='wait' initial={false}>
-          <motion.div
-            key={currentTheme}
-            initial={{ y: -10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className='flex items-center gap-2'
-          >
-            {currentTheme === 'dark' ? (
-              <Sun className='h-4 w-4' aria-hidden='true' />
-            ) : (
-              <Moon className='h-4 w-4' aria-hidden='true' />
-            )}
-            <span className='capitalize'>
-              {currentTheme === 'dark' ? 'Claro' : 'Oscuro'}
-            </span>
-          </motion.div>
-        </AnimatePresence>
-      </Button>
-    </div>
+    <Button
+      variant='ghost'
+      size='icon'
+      onClick={() => setTheme(currentTheme === 'light' ? 'dark' : 'light')}
+      className='h-9 w-9'
+    >
+      <AnimatePresence mode='wait' initial={false}>
+        <motion.div
+          key={currentTheme}
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 10, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {currentTheme === 'dark' ? (
+            <Sun className='h-4 w-4' aria-hidden='true' />
+          ) : (
+            <Moon className='h-4 w-4' aria-hidden='true' />
+          )}
+        </motion.div>
+      </AnimatePresence>
+      <span className='sr-only'>Toggle theme</span>
+    </Button>
   );
 }

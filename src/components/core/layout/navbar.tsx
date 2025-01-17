@@ -1,6 +1,6 @@
 'use client';
 
-import { TreesIcon as Tree } from 'lucide-react';
+import { Info, Phone, TreesIcon as Tree, Wrench } from 'lucide-react';
 import { motion, useScroll } from 'motion/react';
 import Link from 'next/link';
 import * as React from 'react';
@@ -11,9 +11,9 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '#about', label: 'Nosotros' },
-  { href: '#services', label: 'Servicios' },
-  { href: '#contact', label: 'Contacto' }
+  { href: '/#about', label: 'Nosotros', icon: Info },
+  { href: '/#services', label: 'Servicios', icon: Wrench },
+  { href: '/#contact', label: 'Contacto', icon: Phone }
 ];
 
 export function Navbar() {
@@ -63,9 +63,10 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className='text-sm font-medium text-foreground/60 transition-colors hover:text-foreground'
+                    className='flex items-center gap-2 text-sm font-medium text-foreground/60 transition-colors hover:text-foreground'
                   >
-                    {link.label}
+                    <link.icon className='h-4 w-4' />
+                    <span>{link.label}</span>
                   </Link>
                 </motion.div>
               ))}

@@ -18,6 +18,13 @@ export default function AuthButtons() {
       </Link>
     </div>
   ) : (
-    <SignoutButton />
+    <div className='flex items-center gap-2'>
+      <Link href='/contacts'>
+        <Button variant='outline' size='sm'>
+          Panel
+        </Button>
+      </Link>
+      <SignoutButton />
+    </div>
   );
 }

@@ -29,7 +29,12 @@ export default function SignoutButton() {
   };
 
   return (
-    <LoadingButton pending={pending} onClick={handleSignOut} size='sm'>
+    <LoadingButton
+      pending={pending}
+      onClick={handleSignOut}
+      size='sm'
+      variant='destructive'
+    >
       Cerrar sesión
     </LoadingButton>
   );
