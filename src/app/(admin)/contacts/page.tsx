@@ -1,15 +1,37 @@
-import { type Metadata } from 'next';
+'use client';
 
+import { redirect } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+import { authClient } from '@/auth/client';
 import { ContactsTable } from '@/components/core/app/admin/contacts/contacts-table';
+import { type Contact } from '@prisma/client';
 import { getContacts } from '@/data-access/contacts';
 
-export const metadata: Metadata = {
-  title: 'Contactos',
-  description: 'Gestión de contactos y mensajes recibidos.'
-};
+export default function ContactsPage() {
+  const { data: session } = authClient.useSession();
+  const [contacts, setContacts] = useState<Contact[]>([]);
 
-export default async function ContactsPage() {
-  const contacts = await getContacts();
+  useEffect(() => {
+    // If not logged in or not admin, redirect to home
+    if (!session || session.user.role !== 'admin') {
+      redirect('/');
+    }
+  }, [session]);
+
+  useEffect(() => {
+    async function fetchContacts() {
+      if (session?.user.role === 'admin') {
+        const data = await getContacts();
+        setContacts(data);
+      }
+    }
+
+    fetchContacts();
+  }, [session?.user.role]);
+
+  // If no session yet, don't render anything
+  if (!session) return null;
 
   return (
     <main className='container py-8'>
