@@ -2,10 +2,9 @@
 
 import { motion } from 'motion/react';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-import { PageHero } from '@/components/core/app/pages/shared/page-hero';
 import { ContactForm } from '@/components/core/app/pages/contact/contact-form';
+import { PageHero } from '@/components/core/app/pages/shared/page-hero';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export function ContactPage() {
   return (

@@ -3,11 +3,10 @@
 import { motion } from 'motion/react';
 import { Link } from 'next-view-transitions';
 
-import { Button } from '@/components/ui/button';
-
-import { PageHero } from '@/components/core/app/pages/shared/page-hero';
 import { ServiceCard } from '@/components/core/app/pages/services/service-card';
 import { services } from '@/components/core/app/pages/services/services-data';
+import { PageHero } from '@/components/core/app/pages/shared/page-hero';
+import { Button } from '@/components/ui/button';
 
 export function ServicesPage() {
   return (

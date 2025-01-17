@@ -3,9 +3,8 @@
 import { Cog } from 'lucide-react';
 import { motion } from 'motion/react';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
 import type { Service } from '@/components/core/app/pages/services/services-data';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 type ServiceCardProps = {
   service: Service;

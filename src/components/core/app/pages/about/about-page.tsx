@@ -1,8 +1,8 @@
 'use client';
 
-import { PageHero } from '@/components/core/app/pages/shared/page-hero';
 import { AboutFeatures } from '@/components/core/app/pages/about/about-features';
 import { AboutImage } from '@/components/core/app/pages/about/about-image';
+import { PageHero } from '@/components/core/app/pages/shared/page-hero';
 
 export function AboutPage() {
   return (
