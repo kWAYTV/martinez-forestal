@@ -3,8 +3,7 @@
 import { z } from 'zod';
 
 import { prisma } from '@/lib/prisma';
-import { contactFormSchema, type ContactFormValues } from '@/schemas/contact';
-import { revalidatePath } from 'next/cache';
+import { contactFormSchema, ContactFormValues } from '@/schemas/contact';
 
 export type ContactActionState = {
   error?: string | null;
@@ -34,8 +33,6 @@ export async function createContact(
         status: 'PENDING'
       }
     });
-
-    revalidatePath('/');
 
     return {
       success: true
