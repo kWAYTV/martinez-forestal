@@ -50,7 +50,7 @@ export function Navbar() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Tree className='h-5 w-5 text-foreground/80' />
-                <span>Martinez Forestal</span>
+                <span className='text-lg font-semibold'>Martinez Forestal</span>
               </motion.div>
             </Link>
 
