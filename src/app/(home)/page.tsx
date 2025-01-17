@@ -1,9 +1,9 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 
-import Hero from '@/components/core/app/home/hero';
 import About from '@/components/core/app/home/about';
-import Services from '@/components/core/app/home/services';
 import Contact from '@/components/core/app/home/contact';
+import Hero from '@/components/core/app/home/hero';
+import Services from '@/components/core/app/home/services';
 
 export const metadata: Metadata = {
   title: 'Martinez Forestal - Servicios Forestales en Cuntis',

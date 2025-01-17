@@ -1,12 +1,11 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { motion } from 'motion/react';
 import { useForm } from 'react-hook-form';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -15,6 +14,8 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { contactFormSchema, type ContactFormValues } from '@/schemas/contact';
 
 export default function Contact() {

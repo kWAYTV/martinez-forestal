@@ -3,8 +3,8 @@
 import Link from 'next/link';
 
 import { authClient } from '@/auth/client';
-import { Button } from '@/components/ui/button';
 import SignoutButton from '@/components/core/app/auth/logout-button';
+import { Button } from '@/components/ui/button';
 
 export default function AuthButtons() {
   const { data: session } = authClient.useSession();

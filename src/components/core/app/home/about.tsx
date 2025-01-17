@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import Image from 'next/image';
+
 import { Card, CardContent } from '@/components/ui/card';
 
 export default function About() {
@@ -16,7 +17,7 @@ export default function About() {
       >
         <Card className='relative h-[400px] overflow-hidden'>
           <Image
-            src='/images/about.jpg'
+            src='https://z5l0a09ijg.ufs.sh/f/s1hOVWQzX3uOValUeQ7F4ELHVJb2ZhqMsorzyet19cTACdfO'
             alt='Martinez Forestal team'
             fill
             className='object-cover'
