@@ -2,10 +2,10 @@
 
 import { useTransitionRouter } from 'next-view-transitions';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 import { authClient } from '@/auth/client';
 import LoadingButton from '@/components/ui/loading-button';
-import { toast } from 'sonner';
 
 export default function SignoutButton() {
   const router = useTransitionRouter();
