@@ -6,7 +6,7 @@ import { env } from '@/env';
 import { prisma } from '@/lib/prisma';
 
 const options = {
-  appName: 'BetterAuth',
+  appName: 'MartinezForestal',
   database: prismaAdapter(prisma, {
     provider: 'mysql'
   }),
@@ -24,6 +24,9 @@ const options = {
       enabled: true,
       maxAge: 5 * 60 // Cache for 5 minutes
     }
+  },
+  advanced: {
+    cookiePrefix: 'martinez-forestal'
   }
 } satisfies BetterAuthOptions;
 
