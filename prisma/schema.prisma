@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -70,4 +69,37 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Contact {
+  id        String   @id @default(cuid()) @map("_id")
+  name      String
+  email     String
+  phone     String?
+  message   String   @db.Text
+  status    Status   @default(PENDING)
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contact")
+}
+
+model Content {
+  id        String   @id @default(cuid()) @map("_id")
+  section   String
+  title     String
+  content   String   @db.Text
+  lang      String   @default("es")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([section, lang])
+  @@map("content")
+}
+
+enum Status {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
 }

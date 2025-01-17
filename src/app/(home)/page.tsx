@@ -1,11 +1,23 @@
-import Hero from '@/components/core/app/home/hero';
+import { Metadata } from 'next';
 
-export default function Home() {
+import Hero from '@/components/core/app/home/hero';
+import About from '@/components/core/app/home/about';
+import Services from '@/components/core/app/home/services';
+import Contact from '@/components/core/app/home/contact';
+
+export const metadata: Metadata = {
+  title: 'Martinez Forestal - Servicios Forestales en Cuntis',
+  description:
+    'Empresa especializada en servicios forestales, venta de leña, compra de madera y trabajos forestales en Cuntis, Pontevedra. Miembro de FEARMAGA.'
+};
+
+export default async function HomePage() {
   return (
-    <div className='w-full max-w-3xl px-4 py-8'>
-      <div className='space-y-32'>
-        <Hero />
-      </div>
-    </div>
+    <main className='flex min-h-screen flex-col items-center justify-between'>
+      <Hero />
+      <About />
+      <Services />
+      <Contact />
+    </main>
   );
 }
