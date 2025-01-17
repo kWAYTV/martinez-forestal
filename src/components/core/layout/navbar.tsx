@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { Separator } from '@/components/ui/separator';
+import AuthButtons from '@/components/core/app/auth/auth-buttons';
 import { cn } from '@/lib/utils';
 
 export function Navbar() {
@@ -43,7 +44,10 @@ export function Navbar() {
               Martínez Forestal
             </motion.span>
           </Link>
-          <ModeToggle />
+          <div className='flex items-center gap-4'>
+            <ModeToggle />
+            <AuthButtons />
+          </div>
         </nav>
       </div>
       <motion.div

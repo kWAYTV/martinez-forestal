@@ -36,6 +36,5 @@ export const metadata = createMetadata({
     default: 'Martínez Forestal',
     template: '%s | Martínez Forestal'
   },
-  description:
-    'Expertos en compra y venta de madera desde hace generaciones.'
+  description: 'Expertos en compra y venta de madera desde hace generaciones.'
 });
