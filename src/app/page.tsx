@@ -24,7 +24,7 @@ export default function HomePage() {
         style={{ aspectRatio: '21/9' }}
       >
         <Image
-          src='https://z5l0a09ijg.ufs.sh/f/s1hOVWQzX3uOFs7Q3V9BJ5DILM9oFl3jHKda7R6tYEQ4gUWA'
+          src='https://z5l0a09ijg.ufs.sh/f/s1hOVWQzX3uODxfKLk187tJkoXZVG5snpul4YcgIr2WR0fU1'
           alt='Forest landscape'
           fill
           className='object-cover'
