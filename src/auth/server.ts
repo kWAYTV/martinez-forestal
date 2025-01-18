@@ -13,8 +13,7 @@ const options = {
   socialProviders: {
     github: {
       clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
-      redirectURI: '/contacts'
+      clientSecret: env.GITHUB_CLIENT_SECRET
     }
   },
   plugins: [admin()],
