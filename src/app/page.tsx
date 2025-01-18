@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import {
   ArrowRight,
   Info,
@@ -9,6 +8,7 @@ import {
   Wrench
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 
 import { Button } from '@/components/ui/button';
