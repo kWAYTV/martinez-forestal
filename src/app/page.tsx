@@ -28,8 +28,6 @@ export default function HomePage() {
           alt='Forest landscape'
           fill
           className='object-cover'
-          priority
-          quality={100}
         />
       </motion.div>
 
