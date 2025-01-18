@@ -2,22 +2,20 @@
 
 import { type Contact } from '@prisma/client';
 import { redirect } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import { authClient } from '@/auth/client';
 import { ContactsTable } from '@/components/core/app/admin/contacts/contacts-table';
+import { ContactsTableSkeleton } from '@/components/core/app/admin/contacts/contacts-table-skeleton';
 import { getContacts } from '@/data-access/contacts';
 
 export default function ContactsPage() {
   const { data: session } = authClient.useSession();
   const [contacts, setContacts] = useState<Contact[]>([]);
 
-  useEffect(() => {
-    // If not logged in or not admin, redirect to home
-    if (!session || session.user.role !== 'admin') {
-      redirect('/');
-    }
-  }, [session]);
+  if (!session || session.user.role !== 'admin') {
+    redirect('/');
+  }
 
   useEffect(() => {
     async function fetchContacts() {
@@ -43,7 +41,9 @@ export default function ContactsPage() {
           </p>
         </div>
 
-        <ContactsTable contacts={contacts} />
+        <Suspense fallback={<ContactsTableSkeleton />}>
+          <ContactsTable contacts={contacts} />
+        </Suspense>
       </div>
     </main>
   );
