@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import {
   ArrowRight,
   Info,
@@ -14,11 +15,28 @@ import { Button } from '@/components/ui/button';
 
 export default function HomePage() {
   return (
-    <main className='container relative flex flex-1 flex-col items-center justify-center gap-12 py-24'>
+    <main className='container flex flex-col items-center justify-center gap-8 py-8'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
+        className='relative w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl'
+        style={{ aspectRatio: '21/9' }}
+      >
+        <Image
+          src='https://z5l0a09ijg.ufs.sh/f/s1hOVWQzX3uOFs7Q3V9BJ5DILM9oFl3jHKda7R6tYEQ4gUWA'
+          alt='Forest landscape'
+          fill
+          className='object-cover'
+          priority
+          quality={100}
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         className='text-center'
       >
         <Tree className='mx-auto h-12 w-12' />
@@ -34,7 +52,7 @@ export default function HomePage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
         className='grid w-full max-w-2xl gap-4 sm:grid-cols-2'
       >
         <Link href='/about' className='w-full'>
