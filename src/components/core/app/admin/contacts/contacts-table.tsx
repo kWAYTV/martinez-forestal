@@ -11,7 +11,7 @@ import {
   Phone,
   User
 } from 'lucide-react';
-import { useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -31,21 +31,30 @@ import {
   TableRow
 } from '@/components/ui/table';
 import {
+  getContacts,
   updateContactPosition,
   updateContactStatus
 } from '@/data-access/contacts';
 
-type ContactsTableProps = {
-  contacts: Contact[];
-};
-
-export function ContactsTable({ contacts }: ContactsTableProps) {
+export function ContactsTable() {
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    async function fetchContacts() {
+      const data = await getContacts();
+      setContacts(data);
+    }
+
+    fetchContacts();
+  }, []);
 
   const handleStatusChange = async (id: string, status: Status) => {
     startTransition(async () => {
       try {
         await updateContactStatus(id, status);
+        const updatedContacts = await getContacts();
+        setContacts(updatedContacts);
         toast.success('Estado actualizado correctamente');
       } catch (error) {
         console.error('Error:', error);
@@ -58,6 +67,8 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
     startTransition(async () => {
       try {
         await updateContactPosition(id, position);
+        const updatedContacts = await getContacts();
+        setContacts(updatedContacts);
         toast.success('Posición actualizada correctamente');
       } catch (error) {
         console.error('Error:', error);
