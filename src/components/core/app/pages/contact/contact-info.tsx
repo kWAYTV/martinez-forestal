@@ -3,10 +3,10 @@
 import {
   Building2,
   Copy,
+  type LucideIcon,
   Mail,
   MapPin,
-  Phone,
-  type LucideIcon
+  Phone
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { toast } from 'sonner';
